@@ -413,8 +413,8 @@ module.exports = (app, passport, request) => {
       try {
         Pinguptimerobot.findOne(
           { "local.friendly_name": req.body.friendly_name },
-          function (err, usuario) {
-            console.log("usuario", usuario);
+        async  function (err, usuario) {
+           // console.log("usuario", usuario);
             if (err) {
               return done(err);
             }
@@ -425,39 +425,41 @@ module.exports = (app, passport, request) => {
               });
               console.log("not added the new monitor friendly_name error");
             } else {
-              request(optionsNewMonitor, function (error, response) {
-                if (error) throw new Error(error);
-                const obj = JSON.parse(response.body);
-                console.log("obj.stat", obj.stat);
 
-                if (obj.stat != "fail") {
-                  var newPing = new Pinguptimerobot();
+              const obj = await   request(optionsNewMonitor).json();
+             
 
-                  newPing.local.username = req.user.local.name;
-                  newPing.local.friendly_name = req.body.friendly_name;
-                  newPing.local.url = req.body.url;
-                  newPing.local.id = 0;
-                  newPing.local.created = new Date().toString();
-                  newPing.local.updated = new Date().toString();
+
+              if (obj.stat != "fail") {
+                var newPing = new Pinguptimerobot();
+
+                newPing.local.username = req.user.local.name;
+                newPing.local.friendly_name = req.body.friendly_name;
+                newPing.local.url = req.body.url;
+                newPing.local.id =0;
+                newPing.local.created = new Date().toString();
+                newPing.local.updated = new Date().toString();
                   newPing.local.status = "Down";
-                  newPing.local.type_ = 3;
+               
+             
+                newPing.local.type_ = 3;
 
-                  newPing.save(function (err) {
-                    if (err) {
-                      throw err;
-                    }
-                  });
-                  res.render("userSpace", { user: req.user });
-                  console.log("addnewmonitor post");
-                } else {
-                  console.log("usuario", usuario);
-                  res.render("addnewmonitor", {
-                    message: "The url is already taken",
-                    user: req.user,
-                  });
-                  console.log("not added the new monitor url error");
-                }
-              });
+                newPing.save(function (err) {
+                  if (err) {
+                    throw err;
+                  }
+                });
+                res.render("userSpace", { user: req.user });
+                console.log("addnewmonitor post");
+              } else {
+                console.log("usuario", usuario);
+                res.render("addnewmonitor", {
+                  message: "The url is already taken",
+                  user: req.user,
+                });
+                console.log("not added the new monitor url error");
+              }
+
             }
           }
         );

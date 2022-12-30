@@ -460,9 +460,10 @@ module.exports = {
                 listaTiendasDB.push(user[ii].local);
               }
               try {
+                var listaPorFriendly_name = listaTiendasDB;
                 if (listaTiendasDB.length > 0) {
-                  var lastupdatedStatus =
-                    lastUpdateClientStatus(listaTiendasDB);
+                  console.log("listaTiendasDB.length",listaTiendasDB.length);
+                  var lastupdatedStatus = lastUpdateClientStatus(listaTiendasDB);
                   var l = listaTiendasDB;
                   listaTiendasDB = [];
                   ///////////////////// comparar los estados para decidir si hago un update o no
@@ -477,6 +478,57 @@ module.exports = {
                     (estado == "Up" && lastupdatedStatus == "Up")
                   ) {
                     console.log("No hago nada");
+                    console.log("listaPorFriendly_name",listaPorFriendly_name);
+                    console.log("listaPorFriendly_name.length",listaPorFriendly_name.length);
+                    console.log("listaPorFriendly_name[0].id",listaPorFriendly_name[0].id);
+                    if(listaPorFriendly_name.length ===1 && listaPorFriendly_name[0].id === 0){
+                      console.log("hago nada caso 2");
+///////
+console.log("estado", estado);
+console.log("lastupdatedStatus", lastupdatedStatus);
+console.log("l", l);
+contadorDeCambios++;
+var newPing = new Pinguptimerobot(); // creamos modelo de usuario
+
+// var objectId = mongoose.Types.ObjectId('569ed8269353e9f4c51617aa');
+// newPing._id= objectId;
+
+newPing.local.username = user[0].local.username;
+newPing.local.friendly_name = obj.monitors[i].friendly_name;
+newPing.local.url = obj.monitors[i].url;
+newPing.local.id = obj.monitors[i].id;
+newPing.local.created = new Date().toString();
+newPing.local.updated = new Date().toString();
+if (obj.monitors[i].status == 2) {
+  newPing.local.status = "Up";
+} else {
+  newPing.local.status = "Down";
+}
+newPing.local.type_ = obj.monitors[i].type;
+var estado = newPing.local.status;
+newPing.save(function (err) {
+  if (err) {
+    throw err;
+  }
+});
+addNotification(
+  Notifications,
+  estado,
+  obj.monitors[i].url,
+  user[0].local.username,
+  obj.monitors[i].friendly_name
+);
+
+
+
+///////
+
+                    }
+
+
+
+
+
                   } else {
                     console.log("Hogo update");
                     console.log("estado", estado);
@@ -652,6 +704,8 @@ module.exports = {
             id: id,
           },
         };
+
+       
 
         const obj = await request(optionsDeleteMonitor).json();
         console.log("--------> ", obj);
