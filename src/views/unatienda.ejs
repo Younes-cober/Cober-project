@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include('partials/head') %>
+    <title>Home page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card text-center mt-5">
+            <div class="card-body">
+               <h1> <span class="fa fa-lock"></span> Interfaz de prueba [list monitors]</h1>
+            <table>
+                <tr> <a href="/home" class="btn btn-light"> <span class="fa fa-user"></span> Home</a></tr>
+                <tr><a href="/listMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Lista de tiendas</a></tr>
+                <tr><a href="/newMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Nueva tienda</a></tr>
+                <tr><a href="/editMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Editar tienda</a></tr>
+                <tr><a href="/deleteMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Eliminar tienda</a></tr>   
+                <tr><a href="/listMonitorDB" class="btn btn-light"> <span class="fa fa-user"></span> Lista de tiendas DB</a></tr>      
+                <tr><a href="/checking" class="btn btn-light"> <span class="fa fa-user"></span> checking</a></tr>   
+                <tr><a href="/selectTienda" class="btn btn-light"> <span class="fa fa-user"></span> selectTienda</a></tr> 
+            </table>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div >
+
+        <table style="margin-top: 100px;width:100% ;border:1px solid black;">
+            <tr style="border:1px solid black;">
+              <th>friendly name</th>
+              <th>url</th>
+              <th>status</th>
+              <th>id</th>
+              <th>created</th>
+              <th>updated</th>
+            </tr>
+            <% for (var i = 0; i < lista.length; /* I save the data in a variable 'quotation', I don't know how you named your variable  */  i++) { %>
+                <tr style="border:1px solid black;">
+                  <td><%= lista[i].friendly_name %></td>
+                  <td><%= lista[i].url %></td>
+                  <td><%=lista[i].status %></td>
+                  <td><%= lista[i].id %></td>
+                  <td><%= lista[i].created%></td>
+                  <td><%= lista[i].updated %></td>
+                </tr> 
+                   
+               <% } %>
+           
+          </table>
+    </div>
+</body>
+</html>

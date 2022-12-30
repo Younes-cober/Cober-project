@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <%- include('partials/head') %>
+    <title>Home page</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card text-center mt-5">
+            <div class="card-body">
+               <h1> <span class="fa fa-lock"></span> Interfaz de prueba [Seleccionar una tienda]</h1>
+            <table>
+                <tr> <a href="/home" class="btn btn-light"> <span class="fa fa-user"></span> Home</a></tr>
+                <tr><a href="/listMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Lista de tiendas</a></tr>
+                <tr><a href="/newMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Nueva tienda</a></tr>
+                <tr><a href="/editMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Editar tienda</a></tr>
+                <tr><a href="/deleteMonitor" class="btn btn-light"> <span class="fa fa-user"></span> Eliminar tienda</a></tr>   
+                <tr><a href="/listMonitorDB" class="btn btn-light"> <span class="fa fa-user"></span> Lista de tiendas DB</a></tr>       
+                <tr><a href="/checking" class="btn btn-light"> <span class="fa fa-user"></span> checking</a></tr>  
+                <tr><a href="/selectTienda" class="btn btn-light"> <span class="fa fa-user"></span> selectTienda</a></tr> 
+            </table>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="col-sm-6 mx-auto">
+            <div class="card mt-5">
+              <div class="card-body">
+                  <h1 class="text-center">
+                     <span class="fa fa-sign-in"></span> Introducir friendly name
+                  </h1>
+                  <%if(message.length >0) { %>
+                      <div class="alert alert-danger">
+                      <%= message %>
+                      </div>
+                  <% } %>
+                  <form action="/selectTienda" method="POST">
+      
+                     <div class="form-group">
+                      <label for="fa-user">Username</label>
+                      <input type="username" name="username" class="form-control" >
+                     </div>
+                    
+                      
+                      <input type="submit" class="btn btn-dark btn-lg">
+                  </form>
+                  <hr>
+                  <div class="text-center">
+                      
+                      <p>Go <a href="/home">Home</a>.</p>
+                  </div>
+              </div>
+            </div>
+        </div>
+</body>
+</html>
