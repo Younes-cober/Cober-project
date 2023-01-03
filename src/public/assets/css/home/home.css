@@ -2443,7 +2443,7 @@ p {
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.23);
 }
 .section.horizontal-gradient {
-    background: linear-gradient(#C8C8C8, rgb(70, 98, 61), #2b2c2e, rgb(255, 4, 75));
+    background: linear-gradient(#C8C8C8, rgb(70, 98, 61), #2b2c2e, #2b2c2e);
   }
 
 .section.footer {

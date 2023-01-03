@@ -9,11 +9,12 @@ body {
 ul.form1 {
   position:relative;
   background:#fff;
-  width:600px;
+  width:auto;
   margin:auto;
   padding:0;
   list-style: none;
   overflow:hidden;
+ 
   
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -27,11 +28,12 @@ ul.form1 {
 ul.form {
   position:relative;
   background:#fff;
-  width:250px;
+  width:auto;
   margin:auto;
   padding:0;
   list-style: none;
   overflow:hidden;
+  
   
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
